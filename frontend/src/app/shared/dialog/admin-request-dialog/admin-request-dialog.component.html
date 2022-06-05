@@ -1,0 +1,15 @@
+<h1>Admin Request Approver</h1>
+<p>
+    <mat-form-field appearance="outline">
+        <mat-label>Choose Admin</mat-label>
+        <mat-select [formControl]="selectedAdmin">
+            <mat-option *ngFor="let x of adminList" [value]="x.email">
+                {{x.email}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</p>
+
+<p>
+    <button mat-stroked-button [disabled]="!selectedAdmin.value">Submit</button>
+</p>

@@ -1,0 +1,11 @@
+<nav mat-tab-nav-bar [tabPanel]="tabPanel" mat-align-tabs="center">
+    <!-- <a mat-tab-link routerLink="/admin/todo-toolkit" [active]=true>Todo Toolkit</a>
+    <a mat-tab-link routerLink="/admin/view-user">View User</a> -->
+
+    <a mat-tab-link *ngFor="let l of links" routerLink="{{l}}" (click)="activeLink = l"
+        [active]="activeLink==l">{{l}}</a>
+</nav>
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+<div>
+    <router-outlet></router-outlet>
+</div>

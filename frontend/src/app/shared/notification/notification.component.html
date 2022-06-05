@@ -1,0 +1,12 @@
+<mat-list>
+    <div mat-subheader>Notifications</div>
+    <mat-list-item *ngFor="let n of (notifValue|async)" [style.background-color]="n.isRead ? null : '#e1e6ed'">
+        <mat-icon mat-list-icon class="material-icons-outlined">{{n.notifIcon}}</mat-icon>
+        <div mat-line>{{n.notifName}}</div>
+        <div mat-line> {{n.notifDate | date: 'medium'}} </div>
+        <span class="spacer"></span>
+        <button mat-stroked-button (click)="markAsRead(n._id)">Mark as Read</button> &nbsp; &nbsp;
+        <button mat-icon-button><mat-icon color="warn">close</mat-icon></button>
+        <mat-divider></mat-divider>
+    </mat-list-item>
+</mat-list>

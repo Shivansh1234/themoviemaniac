@@ -1,0 +1,18 @@
+<div class="flexBox">
+    <div>
+        <h1>Basic Details</h1>
+        <ul>
+            <li>Name: {{userData.fname}} {{userData.lname}}</li>
+            <li>Email: {{userData.email}}</li>
+        </ul>
+        <button mat-stroked-button routerLink="../change-password">Change Password</button>
+    </div>
+    <div>
+        <h1>Account Details</h1>
+        <ul>
+            <li>AccountType: <span *ngIf="userData.isAdmin">Admin</span><span *ngIf="!userData.isAdmin">Normal</span></li>
+            <li>Created At: {{userData.createdAt | date : 'medium'}}</li>
+        </ul>
+        <button mat-stroked-button (click)="requestDialog()">Request for Admin access</button>
+    </div>
+</div>
