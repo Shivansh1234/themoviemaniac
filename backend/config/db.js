@@ -1,8 +1,3 @@
-// module.exports = {
-//     database: 'mongodb://localhost:27017/todo',
-//     secret: 'yoursecret'
-// }
-
 const mongoose = require('mongoose');
 
 const connectDB = async () => {

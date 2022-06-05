@@ -65,35 +65,6 @@ export class AdminService {
     );
   }
 
-
-  addTodoCategory(x: string): Observable<Result> {
-    let todoCategory = {
-      todoCategory: x
-    }
-    let adminToken = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + adminToken
-    });
-    return this.http.post<Result>(`${environment.baseUrl}/manageTodo/addTodoCategory`, todoCategory, { headers }).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  deleteTodoCategory(x: string): Observable<Result> {
-    let todoCategory = {
-      todoCategory: x
-    }
-    let adminToken = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + adminToken
-    });
-    return this.http.delete<Result>(`${environment.baseUrl}/manageTodo/deleteTodoCategory?name=${x}`, { headers }).pipe(
-      catchError(this.handleError)
-    );
-  }
-
   private handleError(err: HttpErrorResponse) {
     return throwError(() => err);
   }

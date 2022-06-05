@@ -1,1 +1,81 @@
-<p>manage-user works!</p>
+<p>view-user works!</p>
+
+<div class="tableFlexBox">
+
+    <div class="searchFlex">
+
+        <mat-form-field appearance="outline" [style.width.vw]="30">
+            <mat-label>Search</mat-label>
+            <input matInput placeholder="Search by First Name" [formControl]="searchForm">
+            <button mat-icon-button matSuffix (click)="searchForm.reset()" *ngIf="searchForm.valid">
+                <mat-icon matSuffix>close</mat-icon>
+            </button>
+            <button mat-icon-button matSuffix (click)="searchTable()" [disabled]="searchForm.invalid">
+                <mat-icon matSuffix>search</mat-icon>
+            </button>
+            <mat-hint>Minimum 3 letters are required</mat-hint>
+        </mat-form-field>
+
+        <!-- <button mat-button (click)="reset()">Reset</button> -->
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="example-table" matSort (matSortChange)="sortChange($event)">
+        <!-- Number Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>#</th>
+            <td mat-cell *matCellDef="let row; let i=index">{{(paginator.pageIndex)*(paginator.pageSize) + i+1}}
+            </td>
+        </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="fname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+            <td mat-cell *matCellDef="let row">{{row.fname}}</td>
+        </ng-container>
+
+        <!-- State Column -->
+        <ng-container matColumnDef="lname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+            <td mat-cell *matCellDef="let row">{{row.lname}}</td>
+        </ng-container>
+
+        <!-- State Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+            <td mat-cell *matCellDef="let row">{{row.email}}</td>
+        </ng-container>
+
+        <!-- State Column -->
+        <ng-container matColumnDef="isAdmin">
+            <th mat-header-cell *matHeaderCellDef>Is Admin</th>
+            <td mat-cell *matCellDef="let row">
+                <mat-slide-toggle [checked]="row.isAdmin" (change)="adminToggle($event, row)"></mat-slide-toggle>
+            </td>
+        </ng-container>
+
+        <!-- Created Column -->
+        <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                Account Created
+            </th>
+            <td mat-cell *matCellDef="let row">{{row.createdAt | date : 'medium' }}</td>
+        </ng-container>
+
+        <!-- State Column -->
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef>Delete</th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-icon-button (click)="deleteDialog(row)">
+                    <mat-icon class="material-icons-outlined" color="warn">delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
+<mat-paginator [length]="total" [pageSizeOptions]="pageSizeOptions" [pageSize]="limit" [showFirstLastButtons]="true"
+    aria-label="Select page of User search results" (page)="pageChanged($event)">
+</mat-paginator>

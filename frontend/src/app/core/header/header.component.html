@@ -2,8 +2,7 @@
     <mat-toolbar>
         <span routerLink="home">TheMovieManiacs</span>
         <button mat-button routerLink="home" [routerLinkActive]="['isActive']">Home</button>
-        <button mat-button routerLink="feature/view-todo" *ngIf="isLoggedIn" [routerLinkActive]="['isActive']">To
-            Do</button>
+        <button mat-button routerLink="feature/movie-list" *ngIf="isLoggedIn" [routerLinkActive]="['isActive']">Movies</button>
 
         <span class="spacer"></span>
         <button mat-icon-button *ngIf="isLoggedIn" [matMenuTriggerFor]="notif">
